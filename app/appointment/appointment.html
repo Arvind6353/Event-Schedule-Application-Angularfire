@@ -1,0 +1,199 @@
+
+
+	<div class="container">
+
+		<h1 class="text-center"> Contact List Management </h1>
+		
+
+
+		<div class="row">
+
+			<div class="col-md-12 col-xs-12" ng-cloak ng-show="!showAdd">
+     			 <div class="row">
+
+				    <div class="col-md-6 text-center">
+				      <div class="btn-group">
+
+				        <button
+				          class="btn btn-primary"
+				          mwl-date-modifier
+				          date="viewDate"
+				          decrement="calendarView"
+				          ng-click="cellIsOpen = false">
+				          Previous
+				        </button>
+				        <button
+				          class="btn btn-default"
+				          mwl-date-modifier
+				          date="viewDate"
+				          set-to-today
+				          ng-click="cellIsOpen = false">
+				          Today
+				        </button>
+				        <button
+				          class="btn btn-primary"
+				          mwl-date-modifier
+				          date="viewDate"
+				          increment="calendarView"
+				          ng-click="cellIsOpen = false">
+				          Next
+				        </button>
+				      </div>
+				    </div>
+
+				    <br class="visible-xs visible-sm">
+
+				    <div class="col-md-6 text-center">
+				      <div class="btn-group">
+				        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'year'" ng-click="cellIsOpen = false;calendarView='year'">Year</label>
+				        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'month'" ng-click="cellIsOpen = false;calendarView='month'">Month</label>
+				        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'week'" ng-click="cellIsOpen = false;calendarView='week'">Week</label>
+				        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'day'" ng-click="cellIsOpen = false;calendarView='day'">Day</label>
+				      </div>	
+				    </div>
+
+				  </div>
+
+				  <br>
+  
+				  <mwl-calendar
+				    events="events"
+				    view="calendarView"
+				    view-title="calendarTitle"
+				    view-date="viewDate"
+				    on-event-click="eventClicked(calendarEvent)"
+				    cell-is-open="cellIsOpen"
+				    day-view-start="06:00"
+				    day-view-end="22:59"
+				    day-view-split="30"
+				    cell-modifier="modifyCell(calendarCell)"
+				    cell-auto-open-disabled="true"
+				    on-timespan-click="	timespanClicked(calendarDate, calendarCell)"
+				    action-elem="actions">
+				  </mwl-calendar>
+
+					  <br><br><br>
+
+			 </div>
+
+
+
+
+
+
+
+
+		<h3 id="event-editor">
+		    Add Event 
+		    <button
+		      class="btn btn-primary pull-right"
+		      ng-click="showAdd=true;">
+		      Add new
+		    </button>
+		    <div class="clearfix"></div>
+		  </h3>
+
+		 <br/>
+
+
+ 		<div class="row" ng-show="showAdd">
+
+			<div class="col-md-12 col-xs-12">
+
+			<div class="panel panel-primary">
+
+			<div class="panel-heading">
+				
+				Add Event Form 
+			</div>	
+
+			 <div class="panel-body">	
+				<form>
+				  <div class="form-group">
+				    <label for="name">Title</label>
+				   
+				    <textarea rows="3" 
+				    class="form-control" id="name" placeholder="Title" ng-model="eventobj.title"
+				    ></textarea>
+				    
+				  </div>
+
+
+    			 <div class="form-group">
+				    <label for="name">Select Event Type</label>
+				   
+				   	<select id="eventType" class="form-control">
+				   		<option value="0">Select Type </option>
+				   		<option value="1">Important</option>
+				   		<option value="2">Info</option>
+				   		<option value="3">Warning</option>
+				   		<option value="4">Danger</option>
+
+				   	</select>	
+				    
+				  </div>
+
+
+				  
+				  <div class="form-group">
+				    <p class="input-group">
+						<div class="dropdown" id="dr"> 
+						    <a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown">
+						      <div class="input-group">
+						        <input type="text" id="date" name="date" class="form-control" placeholder="Start time" data-ng-model="eventobj.startsAt">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+						      </div>
+						    </a>
+						    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						      <datetimepicker   data-ng-model="eventobj.startsAt" 
+						                        data-datetimepicker-config="{ dropdownSelector: '#dropdown' }"></datetimepicker>
+						    </ul>
+						  </div> 
+					</p>
+
+
+
+				  </div>
+				 
+
+
+
+				  <div class="form-group">
+				    <p class="input-group">
+						<div class="dropdown" id="dr1"> 
+						    <a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown">
+						      <div class="input-group">
+						        <input type="text" id="date" name="date" class="form-control" placeholder="End time"  data-ng-model="eventobj.endsAt">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+						      </div>
+						    </a>
+						    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						      <datetimepicker   data-ng-model="eventobj.endsAt" 
+						                        data-datetimepicker-config="{ dropdownSelector: '#dropdown' }"></datetimepicker>
+						    </ul>
+						  </div> 
+					</p>
+
+
+
+				  </div>
+				  
+
+
+				 
+				  <button class="btn btn-success btn-block" ng-click="addEvent()">Add</button>
+
+				</form>
+
+				</div>	
+      		 </div>	
+
+			</div>
+
+  			 </div>	
+
+		</div>
+
+	</div>
+
+

@@ -1,0 +1,67 @@
+
+<h3 id="event-editor">
+    Edit events
+    <button
+      class="btn btn-primary pull-right"
+      ng-click="addEvent()">
+      Add new
+    </button>
+    <div class="clearfix"></div>
+  </h3>
+
+ <br/><br/>
+
+  <table class="table table-bordered">
+
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Primary color</th>
+        <th>Secondary color</th>
+        <th>Starts at</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="event in events track by $index">
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            ng-model="event.title">
+        </td>
+        <td>
+          <input class="form-control" colorpicker type="text" ng-model="event.color.primary">
+        </td>
+        <td>
+          <input class="form-control" colorpicker type="text" ng-model="event.color.secondary">
+        </td>
+        <td>
+          <p class="input-group" style="max-width: 250px">
+				<div class="dropdown" id="dr"> 
+				    <a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown">
+				      <div class="input-group">
+				        <input type="text" id="date" name="date" class="form-control" data-ng-model="event.startsAt">
+				        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+				      </div>
+				    </a>
+				    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				      <datetimepicker   data-ng-model="event.startsAt" 
+				                        data-datetimepicker-config="{ dropdownSelector: '#dropdown' }"></datetimepicker>
+				    </ul>
+				  </div> 
+			</p>
+
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            ng-click="events.splice($index, 1)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>

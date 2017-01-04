@@ -1,0 +1,11 @@
+Hello xxx www---- {{vm.calendarConfig.actionElem |json}}
+ <span ng-bind=\"actionElem\"></span>       <a\n          href=\"javascript:;\"\n          class=\"event-item-action\"\n     
+ ng-class=\"action.cssClass\"\n      
+ ng-repeat=\"action in vm.calendarConfig.actionElem track by $index\"\n       
+ ng-bind-html=\"action.label | calendarTrustAsHtml\"\n        
+ ng-click=\"action.onClick({calendarEvent: event})\">\n      
+ </a>\n\n    
+ </li>\n\n   
+ </ul>\n
+
+ </div>\n</div>\n";
